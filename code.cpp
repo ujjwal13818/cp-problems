@@ -100,10 +100,5 @@ int main() {
 	freopen("Error.txt", "w", stderr);
 #endif
 
-    vi v;
-    v.pb(2);
-    v.pb(3);
-
-    if(!(vHas(v,2)))cout << "yes" << endl;
 	return 0;
 }
