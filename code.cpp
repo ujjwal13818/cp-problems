@@ -95,14 +95,18 @@ int ub(vi &v, int x) { int low = 0, high = v.size(), ans = high; while (low < hi
 //gives the index at which  value is just greater.
 //gives sum of vector from index a to b both inclusive;
 ll findSum(const vector<ll> &v, ll a , ll b) {if(a < 0 || b > v.size())return -1; ll ts = 0 ; frn(i,a,b+1)ts += v[i]; return ts; };
-//KMP algo
+//KMP algo for pattern matching in string;
 vector<ll> KMP(string &s, string &t) { int n = s.size(), m = t.size(); vector<ll> lps(m, 0); int l = 0; for(int r = 1; r < m; r++) { if(t[l] == t[r]) { lps[r] = l + 1; l++; } else { if(l != 0) { l = lps[l - 1]; } else { lps[r] = 0; } } } vector<ll> ans; int j = 0; for(int i = 0; i < n; i++) { if(t[j] == s[i]) j++; else { if(j != 0) { j = lps[j - 1]; i--; } } if(j == m) { ans.pb(i - m + 1); j = 0; } } return ans; }
+//Finding factors of a number;
+vector<ll> findFactors(ll a){ vector<ll> v; for(ll i = 1 ; i <= sqrt(a) ; i++){ if(a%i == 0){ if(a/i == i){ v.pb(i); } else{ v.pb(i); v.pb(a/i); } } } return v; }
+//Returns a vector of hashes of each prefix strings; h[i+1] = hash of string till index i;
+vector<ll> findHash(string &s){ int n = s.size(); int p = 31; int m = 1e9 + 9; vector<long long> p_pow(n); p_pow[0] = 1; for (int i = 1; i < n; i++) p_pow[i] = (p_pow[i-1] * p) % m; vector<long long> h(n + 1, 0); for (int i = 0; i < n; i++) h[i+1] = (h[i] + (s[i] - 'a' + 1) * p_pow[i]) % m; return h; }
 
 
 int main() {
 #ifndef ONLINE_JUDGE
 	freopen("Error.txt", "w", stderr);
 #endif
-  
+   
  return 0;
 }
